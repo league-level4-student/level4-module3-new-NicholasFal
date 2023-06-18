@@ -130,6 +130,7 @@ public class SpiesOnATrainTest {
             }
 
             train.add(new TrainCar(observer, evidence));
+            
         }
 
         SpiesOnATrain agent = new SpiesOnATrain();

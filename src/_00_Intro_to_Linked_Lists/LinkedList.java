@@ -93,7 +93,7 @@ public class LinkedList<T> {
         }
 
     }
-
+    
     public int size() {
         int size = 0;
         if (head != null) {

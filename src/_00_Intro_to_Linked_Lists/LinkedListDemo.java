@@ -1,5 +1,6 @@
 package _00_Intro_to_Linked_Lists;
-
+import java.io.*;
+import java.util.List;
 public class LinkedListDemo {
 
     public static void main(String[] args) {
@@ -31,7 +32,22 @@ public class LinkedListDemo {
          * String nodes.
          * 
          */
-
+    	LinkedList<Integer> ints = new LinkedList<Integer>();
+    	ints.add(45);
+    	ints.add(3459);
+    	ints.add(2);
+    	ints.add(11);
+    	ints.remove(1);
+    	ints.print();
+    	Node<Integer> head = new Node<Integer>(45);
+    	Node<Integer> tail = new Node<Integer>(11);
+    	ints.setHead(head);
+    	ints.setTail(tail);
+		Node<Integer> multiplier = new Node<Integer>(5);
+    	for(int i = 0; i < ints.size(); i++) {
+    		head = head.getNext().getValue() * 5;
+    	}
+    	head.getNext();
     }
 
 }
