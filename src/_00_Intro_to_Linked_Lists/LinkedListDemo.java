@@ -38,16 +38,21 @@ public class LinkedListDemo {
     	ints.add(2);
     	ints.add(11);
     	ints.remove(1);
-    	ints.print();
-    	Node<Integer> head = new Node<Integer>(45);
-    	Node<Integer> tail = new Node<Integer>(11);
-    	ints.setHead(head);
-    	ints.setTail(tail);
-		Node<Integer> multiplier = new Node<Integer>(5);
-    	for(int i = 0; i < ints.size(); i++) {
-    		head = head.getNext().getValue() * 5;
+    	//ints.print();
+    	//Node<Integer> head = new Node<Integer>(45);
+    	//Node<Integer> tail = new Node<Integer>(11);
+    	//ints.setHead(head);
+    	//ints.setTail(tail);
+    	Node<Integer> current = ints.getHead();
+    	
+    	
+    	while(current != null) {
+    		current.setValue(current.getValue()*5);
+    		System.out.print(current.getValue() + " -> ");
+    		current = current.getNext();
+    		
+    		
     	}
-    	head.getNext();
     }
 
 }

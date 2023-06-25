@@ -1,6 +1,8 @@
-package _01_Spies_On_A_Train;
+ package _01_Spies_On_A_Train;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import _00_Intro_to_Linked_Lists.LinkedList;
 import _00_Intro_to_Linked_Lists.Node;
@@ -22,9 +24,64 @@ public class SpiesOnATrain {
      * statements.
      */
     String findIntel(LinkedList<TrainCar> train, String[] clues) {
-
-        return "";
+    	ArrayList<String> suspects = new ArrayList<String>();
+    	HashMap<String, Integer> suspectCount = new HashMap<String, Integer>();
+    	train.print();
+    	Node<TrainCar> current = train.getHead();
+    	for(int i = 0; i < clues.length; i++) {
+    		System.out.println(clues[i]);
+    	}
+    	while(current != null) {
+    		String info = current.getValue().questionPassenger();
+    		int spaces = 0;
+    		String important = "";
+    		String person = null;
+    		Boolean suspicious = false;
+    		for(int i = 0; i < info.length(); i++) {
+    			if(info.substring(i, i+1).equals(" ") && spaces != 14) {
+    				spaces++;
+    			}
+    			if(spaces == 14) {
+    				important+=info.substring(i, i+1);
+    			}
+    		}
+    		important = important.substring(1, important.length()-1);
+    		for(int i = 0; i < clues.length; i++) {
+        		if(important.equals(clues[i])) {
+        			suspicious = true;
+        		}
+        	}
+    		if(suspicious) {
+    			spaces = 0;
+    			person = "";
+    			for(int i = 0; i < info.length(); i++) {
+    				if(info.substring(i, i+1).equals(" ")) {
+    					spaces++;
+    				}
+    				if(spaces == 13) {
+    					person+=info.substring(i, i+1);
+    				}
+    			}
+        		person = person.substring(1, person.length()-1);
+    			suspects.add(person);
+    		}
+    		current = current.getNext();
+    		
+    	}
+        for(int i = 0; i < suspects.size(); i++) {
+        	if(!suspectCount.containsValue(suspects.get(i))) {
+        		suspectCount.put(suspects.get(i), 1);
+        	} else {
+        		for(Entry<String, Integer> suspect : suspectCount.entrySet()) {
+        			if(suspect.getValue() == someValue) {
+        				key = suspect.getKey();
+        			}
+        		}
+        	}
+        }
+    	return "";
 
     }
+    
 
 }
