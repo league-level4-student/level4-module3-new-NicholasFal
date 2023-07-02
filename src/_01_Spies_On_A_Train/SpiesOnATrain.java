@@ -28,11 +28,13 @@ public class SpiesOnATrain {
     	HashMap<String, Integer> suspectCount = new HashMap<String, Integer>();
     	train.print();
     	Node<TrainCar> current = train.getHead();
+    	String personF = "";
     	for(int i = 0; i < clues.length; i++) {
     		System.out.println(clues[i]);
     	}
     	while(current != null) {
     		String info = current.getValue().questionPassenger();
+    		System.out.println(info);
     		int spaces = 0;
     		String important = "";
     		String person = null;
@@ -62,24 +64,35 @@ public class SpiesOnATrain {
     					person+=info.substring(i, i+1);
     				}
     			}
-        		person = person.substring(1, person.length()-1);
+        		person = person.substring(1, person.length());
     			suspects.add(person);
     		}
     		current = current.getNext();
     		
     	}
+    	System.out.println(suspects);
         for(int i = 0; i < suspects.size(); i++) {
-        	if(!suspectCount.containsValue(suspects.get(i))) {
-        		suspectCount.put(suspects.get(i), 1);
-        	} else {
+        	if(suspectCount.containsKey(suspects.get(i))) {
         		for(Entry<String, Integer> suspect : suspectCount.entrySet()) {
-        			if(suspect.getValue() == someValue) {
-        				key = suspect.getKey();
+        			if(suspect.getKey().equals(suspects.get(i))) {
+        			suspectCount.put(suspect.getKey(), suspect.getValue()+1);
+        			System.out.println(suspect.getKey() + " " + suspect.getValue() + " Adding value ");
         			}
-        		}
+        			}
+        	} else {
+        		System.out.println("creating new key: " + suspects.get(i));
+        		suspectCount.put(suspects.get(i), 1);
+        		
         	}
         }
-    	return "";
+        for(Entry<String, Integer> suspect : suspectCount.entrySet()) {
+        	if(suspect.getValue() == 3) {
+        		personF = suspect.getKey();
+        	}
+        }
+    	System.out.println(suspectCount);
+    	System.out.println(personF);
+    	return personF;
 
     }
     
