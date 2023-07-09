@@ -98,6 +98,35 @@ public class BinaryTree<T extends Comparable<T>> {
         }
 
     }
+    protected Node<T> recursiveIterate(Node<T> current, T value, T another) {
+
+        if (current == null) {
+            return null;
+        } else if (value.compareTo(current.getValue()) == 0) {
+        	insert(another);
+            return current;
+        	
+        } else if (value.compareTo(current.getValue()) < 0) {
+
+            return recursiveSearch(current.getLeft(), value);
+        } else {
+
+            return recursiveSearch(current.getRight(), value);
+        }
+
+    }
+ /*   				
+    				10
+    				/\
+    			   4  17
+    			  /\   
+    			    6
+    			     \
+    			      12
+    				  /
+    				11
+
+    */
 
     /*
      * Deletion is a little bit more complicated.

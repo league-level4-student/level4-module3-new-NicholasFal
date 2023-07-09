@@ -33,7 +33,25 @@ public class BinaryTreeDemo {
      */
 
     public static void main(String[] args) {
-
+    	BinaryTree<String> messages = new BinaryTree<String>();
+    	messages.insert("top");
+    	messages.insert("next");
+    	messages.insert("another");
+    	messages.insert("bottom");
+    	messages.search("next");
+    	messages.insert("zebra");
+    	messages.delete("another");
+  
+    	BinaryTree<Integer> nums = new BinaryTree<Integer>();
+    	nums.insert(5);
+    	nums.insert(8);
+    	nums.insert(12);
+    	nums.insert(2);
+    	nums.printVertical();
+    	Node<Integer> root = nums.search(5);
+    	nums.getRoot();
+    	nums.recursiveIterate(root, 5, 6);
+    	nums.printVertical();
     }
 
 }

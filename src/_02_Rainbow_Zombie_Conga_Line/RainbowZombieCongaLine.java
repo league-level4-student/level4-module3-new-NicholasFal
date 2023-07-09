@@ -86,12 +86,15 @@ public class RainbowZombieCongaLine {
      * the conga line!
      */
     public void everyoneOut(Zombie dancer) {
+    	LinkedList<Zombie> newConga = new LinkedList<Zombie>();
     	for(int i = 0; i < congaLine.size(); i++) {
     		Zombie head = congaLine.getHead().getValue();
-    		if(head.getZombieHatColor() == dancer.getZombieHatColor()) {
-    			congaLine.remove(i);
+    		if(head.getZombieHatColor() != dancer.getZombieHatColor()) {
+    			newConga.add(head);
     		}
+    		congaLine.remove(0);
     	}
+    	congaLine = newConga;
     }
 
     /*
@@ -99,7 +102,23 @@ public class RainbowZombieCongaLine {
      * from the conga line!
      */
     public void youAreDone(Zombie dancer) {
-
+    	LinkedList<Zombie> newConga = new LinkedList<Zombie>();
+    	boolean done = false;
+    	for(int i = 0; i < congaLine.size(); i++) {
+    		
+    			Zombie head = congaLine.getHead().getValue();
+    			if(head.getZombieHatColor() != dancer.getZombieHatColor()) {
+    				newConga.add(head);
+    			} else {
+    				if(!done) {
+        				done = true;
+    				} else {
+        				newConga.add(head);
+    				}
+    			}
+    			congaLine.remove(0);
+    	}
+    	congaLine = newConga;
     }
 
     /*
@@ -107,7 +126,13 @@ public class RainbowZombieCongaLine {
      * add one to the front, one to the end and one in the middle.
      */
     public void brains(Zombie dancer) {
-
+    	ZombieHatColor hat = dancer.getZombieHatColor();
+    	Zombie zombie = new Zombie(hat);
+    	Zombie zombieTwo = new Zombie(hat);
+    	int position = congaLine.size()/2;
+    	engine(dancer);
+    	caboose(zombie);
+    	jumpInTheLine(zombieTwo, position);
     }
 
     /*
@@ -115,7 +140,21 @@ public class RainbowZombieCongaLine {
      * color to the end of the line.
      */
     public void rainbowBrains(Zombie dancer) {
-
+    	engine(dancer);
+    	ZombieHatColor hat = ZombieHatColor.R;
+    	ZombieHatColor hat2 = ZombieHatColor.O;
+    	ZombieHatColor hat3 = ZombieHatColor.G;
+    	ZombieHatColor hat4 = ZombieHatColor.Y;
+    	ZombieHatColor hat5 = ZombieHatColor.B;
+    	ZombieHatColor hat6 = ZombieHatColor.I;
+    	ZombieHatColor hat7 = ZombieHatColor.V;
+    	caboose(new Zombie(hat));
+    	caboose(new Zombie(hat2));
+    	caboose(new Zombie(hat3));
+    	caboose(new Zombie(hat4));
+    	caboose(new Zombie(hat5));
+    	caboose(new Zombie(hat6));
+    	caboose(new Zombie(hat7));
     }
 
     public LinkedList<Zombie> getCongaLine() {
