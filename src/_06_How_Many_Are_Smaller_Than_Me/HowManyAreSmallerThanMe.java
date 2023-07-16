@@ -15,9 +15,24 @@ public class HowManyAreSmallerThanMe {
      */
 
     public int howManyAreSmallerThanMe(AVLTree<Integer> avlTree, int me) {
+    	AVLNode<Integer> node = avlTree.getRoot();
+    	int count = counter(node, me);
+        return count;
 
-        return 0;
-
+    }
+    public int counter(AVLNode<Integer> avlTree, int me) {
+    	int count = 0;
+    	if(avlTree == null) {
+    		return count;
+    	} 
+    	if(avlTree.getValue() < me) {
+    		count++;
+    		System.out.println(avlTree.getValue());
+    	}
+    	count += counter(avlTree.getRight(), me);
+    	count += counter(avlTree.getLeft(), me);
+    	
+    	return count;
     }
 
 }
